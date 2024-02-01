@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <title>To-do list</title>
+</head>
+<body>
+    
+    <main>
+
+        <div>
+            <h1>Lista de tarefas</h1>
+            
+            <span>
+                <button class="add">adicionar tarefa</button>
+                <button class="edit">editar tarefa</button>
+            </span>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <td>Tarefa</td>
+                    <td>Data da tarefa</td>
+                    <td>Completa?</td>
+                    <td></td>
+                </tr>
+            </thead>
+
+            <tbody>
+                
+            </tbody>
+        </table>
+    </main>
+
+    <section class="addTask hidden">
+        <div>
+            <h1>Adicionar Tarefa</h1>
+
+            <form action="">
+                <div class="flex">
+                    <label for="name">Nome da Tarefa</label>
+                    <input type="text" class="name" id="name">
+                </div>
+
+                <div class="flex">
+                    <label for="data">De:</label>
+                    <select>
+                        <option value=""></option>
+                        <option value="segunda">Segunda</option>
+                        <option value="terca">Terça</option>
+                        <option value="quarta">Quarta</option>
+                        <option value="quinta">Quinta</option>
+                        <option value="sexta">Sexta</option>
+                        <option value="sabado">Sabado</option>
+                        <option value="domingo">Domingo</option>
+                    </select>
+
+                </div>
+
+                <div class="checkboxId">
+                    <label for="OneDay">Apenas um dia</label>
+                    <input type="checkbox" name="" id="oneDay">
+                </div>
+
+                <div class="flex">
+                    <label for="from">Até:</label>
+                    <select id="from">
+                        <option value=""></option>
+                        <option value="segunda">Segunda</option>
+                        <option value="terca">Terça</option>
+                        <option value="quarta">Quarta</option>
+                        <option value="quinta">Quinta</option>
+                        <option value="sexta">Sexta</option>
+                        <option value="sabado">Sabado</option>
+                        <option value="domingo">Domingo</option>
+                    </select>
+                </div>
+
+
+                <div>
+                    <button type="submit">Adicionar tarefa</button>
+                </div>
+            </form>
+
+        </div>
+    </section>
+
+    <script type="module" src="./src/js/main.js"></script>
+</body>
+</html>
