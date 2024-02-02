@@ -13,6 +13,15 @@ export class Todo {
 
   }
 
+  clear() {
+    this.task = {
+        name: "",
+        checkbox: false,
+        toSelect: "",
+        fromSelect: ""
+    }
+  }
+
 
   load() {
     this.entries = JSON.parse(localStorage.getItem("@tasks:")) || [];
@@ -25,18 +34,55 @@ export class Todo {
   add(task) {
 
     this.entries = [task, ...this.entries];
-    console.log(this.entries)
+    this.clear();
+    this.save()
     this.update()
   }
 
-  edit() {}
+  edit() {
+    const editButton = document.querySelector(".edit")
+    let filtered;
+
+    editButton.addEventListener("click", () => {
+        this.tbody.querySelectorAll("tr").forEach(entries => {
+
+            const name = entries.querySelector(".name");
+
+            name.setAttribute("contenteditable", true)
+
+
+            name.onfocus = () => {
+                filtered =  this.entries.filter(entry => entry.name === name.textContent);
+            }
+
+            name.onblur = () => {
+
+            if(name.textContent === ""){
+                alert("Coloque um nome")
+                return;
+            }
+
+            console.log(filtered)
+
+            filtered[0].name = name.textContent;
+
+            this.update()
+            this.save()
+
+          }
+            
+
+        })
+    })
+
+
+  }
 
   remove(id) {
     const filtered = this.entries.filter((entries) => entries.name !== id.name);
 
-    console.log(filtered);
-
     this.entries = filtered;
+    this.save()
     this.update();
   }
 }
@@ -53,7 +99,7 @@ export class List extends Todo {
 
     const form = document.querySelector("form");
     const checkboxForm = form.querySelector("#oneDay");
-    const fromSelect = form.querySelector("#from");
+    let fromSelect = form.querySelector("#from");
 
     const button = document.querySelector(".add");
 
@@ -95,22 +141,22 @@ export class List extends Todo {
 
 
         this.add(this.task);
-        
-
         document.querySelector(".addTask").classList.add("hidden")
-
+        
+        form.querySelectorAll("select")[1].value = ""
+        form.querySelectorAll("select")[0].value = ""
+        form.querySelector("input").value = "";
+        fromSelect.ariaChecked = false
     })
   }
 
   update() {
     this.removeAllTr();
 
-    console.log(this.entries)
 
     this.entries.forEach((entries) => {
         
       const row = this.createList();
-      console.log(entries)
       row.querySelector(".name").textContent = entries.name;
       row.querySelector(
         ".date"
