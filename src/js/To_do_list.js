@@ -108,6 +108,9 @@ export class List extends Todo {
     })
 
     checkboxForm.onclick = () => {
+
+      console.log(this.task.checkbox);
+
       this.task.checkbox = !this.task.checkbox;
 
       if (this.task.checkbox) {
@@ -146,7 +149,9 @@ export class List extends Todo {
         form.querySelectorAll("select")[1].value = ""
         form.querySelectorAll("select")[0].value = ""
         form.querySelector("input").value = "";
-        fromSelect.ariaChecked = false
+        
+        fromSelect.disabled = false
+        checkboxForm.checked = false
     })
   }
 
